@@ -76,7 +76,7 @@ void forca(int estado)
  	printf("Jogador 1:");
  	gotoxy(20,5);
  	printf("Informe a palavra secreta: \n");
- 	scanf("%s",&p_secreta);
+ 	gets(p_secreta);
 
 	
 }
