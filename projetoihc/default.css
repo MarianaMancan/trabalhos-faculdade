@@ -1,0 +1,67 @@
+
+/*==================== GOOGLE FONTS ====================*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+
+:root{
+    --mainText:black;
+    --secondText:#4b5156;
+    --maincolor:#eaeaea;
+    --secondecolor:#fff;
+    --bordercolor:#c1c1c1;
+    --body-font: 'Poppins', sans-serif;
+}
+
+body{
+ padding: 0%;
+ margin: 0%;
+}
+h1,h2,h3,h4,h5,h6 strong{
+ color:var(--mainText);
+}
+p,li,span,label,input,textarea{
+ color:var(--secondText);
+}
+a{
+    text-decoration: none;
+    color:#17a2b8
+}
+ul{
+    list-style: none;
+}
+h1{font-size: 56px;}
+h2{font-size: 36px;}
+h3{font-size: 28px;}
+h1{font-size: 24px;}
+h1{font-size: 20px;}
+h1{font-size: 16px;}
+.nome{
+    display: grid;
+	text-align: center;
+	align-content: center;
+	min-height: 10em;
+}
+.s1{
+    background-color: var(--maincolor);
+    border-bottom: 1px solid var(--bordercolor);
+    overflow: auto;
+    font-family: var(--body-font);
+    font-weight: 500;
+}
+.s2{
+    background-color: var(--secondecolor);
+    border-bottom: 1px solid var(--bordercolor);
+    overflow: auto;
+    font-family: var(--body-font);
+}
+.main-container{
+    width: 1200px;
+    margin: 0 auto;
+
+}
+@media  screen and (max-width:1200px) {
+    .main-container{
+        margin: 0 auto;
+        width: 95%;
+    }
+}
