@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <windows.h>
 #include <string.h>
+#include <locale.h>
 void gotoxy(int x,int y)
 {     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){x-1,y-1}); }
 //Desenhando forca
@@ -68,70 +69,74 @@ void forca(int estado)
 	}
 }
  main(){
+ 	setlocale (LC_ALL,"Portuguese");
  	fflush(stdin);
- 	char p_secreta[100];
+ 	char p_secreta[20];
  	int i;
  	gotoxy(20,3);
- 	printf("JOGO DA FORCA:");
+ 	printf("** JOGO DA FORCA **");
  	printf("\n");
  	gotoxy(20,4);
- 	printf("Jogador 1:");
+ 	printf("Jogador 1");
  	gotoxy(20,5);
  	printf("Informe a palavra secreta: ");
     gets(p_secreta);
-    printf("A palavras tem %lu caracteres",strlen(p_secreta));
+    gotoxy(20,6);
+    printf("ATENÇÃO: A palavra tem %lu letras!",strlen(p_secreta));
     printf("\n");
-    //limpando tela
+    
+	//limpando tela
     for(i=0;i<20;i++){
     	printf("\n");
-}
-
-
-int erros=0;
-char p_tela[100],letra;	
-strcpy(p_tela,p_secreta);//copia de p_secreta
-//trocar letras por underlines
-for(int i=0;i<strlen(p_tela);i++){
-	p_tela[i]='_';
-}
-while(1){
-//imprimir a forca
-forca(erros);
-printf("\n ADIVINHE:");
-//imprimir os underlines para cada letra da palavra secreta
-for(i=0;i<strlen(p_tela);i++){
-	printf("%c ",p_tela[i]);
-}
-//recebe a letra
-printf("\nLetra: ");
-scanf(" %c",&letra);//o espaço antes do % e´por conta do replit
-//se letra correta atualiza palavra secreta
-//verifica se a letra está correta
-int sera_que_errou=1;//1=sim;0=não
-for(i=0;i<strlen(p_tela);i++){
-	if(letra==p_secreta[i]){
-		p_tela[i]=letra;
-		sera_que_errou=0;
 	}
-}
-//se não incrementa os erros
-if(sera_que_errou==1)
-	erros++;
-//verifica se o jogo acabou
-//verifica se perdeu 
-if(erros==6){
-	//perdeu
-	printf("Voce perdeu!!");
-	break;
-}
-//verificar se ganhou o jogo
-//verificar se p_secreta é igual a p_tela
-if(strcmp(p_tela,p_secreta)==0){
-	//ganhou
-	printf("Parabens,voce venceu o jogo!!");
-	break;
-}
-}
+
+	printf("\nJogador 2, adivinhe a palavra!\n\n");
+	int erros=0;
+	char p_tela[100],letra;	
+	strcpy(p_tela,p_secreta); //copia de p_secreta
+	//Troca letras por underlines
+	for(int i=0;i<strlen(p_tela);i++){
+		p_tela[i]='_';
+	}
+	while(1){
+	//imprimir a forca
+	forca(erros);
+	printf("\nPalavra: ");
+	//imprimir os underlines para cada letra da palavra secreta
+	for(i=0;i<strlen(p_tela);i++){
+		printf("%c ",p_tela[i]);
+	}
+	//recebe a letra
+	printf("\nLetra: ");
+	scanf(" %c",&letra); //o espaço antes do % é por conta do replit
+	//Se letra correta atualiza palavra secreta
+	//Verifica se a letra está correta
+	int sera_que_errou=1;//1=sim;0=não
+	for(i=0;i<strlen(p_tela);i++){
+		if(letra==p_secreta[i]){
+			p_tela[i]=letra;
+			sera_que_errou=0;
+		}
+	}
+	//se não incrementa os erros
+	if(sera_que_errou==1)
+		erros++;
+	//verifica se o jogo acabou
+	//verifica se perdeu 
+	if(erros==6){
+		//perdeu
+		printf("\Você perdeu e foi enforcado!!!");
+		printf("\nA palavra era: %s.", p_secreta);
+		break;
+	}
+	//verificar se ganhou o jogo
+	//verificar se p_secreta é igual a p_tela
+	if(strcmp(p_tela,p_secreta)==0){
+		//ganhou
+		printf("Parabêns, você venceu o jogo e está livre da forca!!!");
+		break;
+		}
+	}
 }
 
 
