@@ -7,8 +7,8 @@
 void gotoxy(int x,int y)
 {     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),(COORD){x-1,y-1}); }
 //Desenhando forca
-void forca(int estado)
-	{if(estado==0){
+void forca(int status)
+	{if(status==0){
 		printf("-----------");
 		printf("\n|         |");
 		printf("\n|");
@@ -16,7 +16,7 @@ void forca(int estado)
 		printf("\n|");
 		printf("\n|");
 		printf("\n-");
-	}else if(estado==1){
+	}else if(status==1){
 		printf("-----------");
 		printf("\n|         |");
 		printf("\n|         0");
@@ -24,8 +24,7 @@ void forca(int estado)
 		printf("\n|");
 		printf("\n|");
 		printf("\n-");
-		
-	}else if(estado==2){
+	}else if(status==2){
 		printf("-----------");
 		printf("\n|         |");
 		printf("\n|         0");
@@ -33,7 +32,7 @@ void forca(int estado)
 		printf("\n|");
 		printf("\n|");
 		printf("\n-");	
-	}else if(estado==3){
+	}else if(status==3){
 		printf("-----------");
 		printf("\n|         |");
 		printf("\n|         0");
@@ -41,7 +40,7 @@ void forca(int estado)
 		printf("\n|");
 		printf("\n|");
 		printf("\n-");	
-    }else if(estado==4){
+    }else if(status==4){
 		printf("-----------");
 		printf("\n|         |");
 		printf("\n|         0");
@@ -49,7 +48,7 @@ void forca(int estado)
 		printf("\n|");
 		printf("\n|");
 		printf("\n-");	
-	}else if(estado==5){
+	}else if(status==5){
 		printf("-----------");
 		printf("\n|         |");
 		printf("\n|         0");
@@ -57,21 +56,20 @@ void forca(int estado)
 		printf("\n|        /");
 		printf("\n|");
 		printf("\n-");	
-	}else if(estado==6){
+	}else if(status==6){
 		printf("-----------");
 		printf("\n|         |");
 		printf("\n|         0");
 		printf("\n|        -|-");
 		printf("\n|        / \\");
 		printf("\n|");
-		printf("\n|    Perdeu o jogo!");
 		printf("\n-");	
 	}
 }
  main(){
  	setlocale (LC_ALL,"Portuguese");
  	fflush(stdin);
- 	char p_secreta[20];
+ 	char palavra_secreta[20];
  	int i;
  	gotoxy(20,3);
  	printf("** JOGO DA FORCA **");
@@ -80,65 +78,86 @@ void forca(int estado)
  	printf("Jogador 1");
  	gotoxy(20,5);
  	printf("Informe a palavra secreta: ");
-    gets(p_secreta);
+    gets(palavra_secreta);
     gotoxy(20,6);
-    printf("ATENÇÃO: A palavra tem %lu letras!",strlen(p_secreta));
+    printf("ATENÇÃO: A palavra tem %lu letras!",strlen(palavra_secreta));
     printf("\n");
     
-	//limpando tela
-    for(i=0;i<20;i++){
-    	printf("\n");
-	}
+    //Limpa tela
+	system("cls");
 
 	printf("\nJogador 2, adivinhe a palavra!\n\n");
-	int erros=0;
-	char p_tela[100],letra;	
-	strcpy(p_tela,p_secreta); //copia de p_secreta
+	int erro=0;
+	char palavra_tela[20],letra, vet[10];	
+	strcpy(palavra_tela,palavra_secreta);
+	
 	//Troca letras por underlines
-	for(int i=0;i<strlen(p_tela);i++){
-		p_tela[i]='_';
+	for(int i=0;i<strlen(palavra_tela);i++){
+		palavra_tela[i]='_';
 	}
 	while(1){
-	//imprimir a forca
-	forca(erros);
+
+	//Imprime a forca
+	forca(erro);
 	printf("\nPalavra: ");
-	//imprimir os underlines para cada letra da palavra secreta
-	for(i=0;i<strlen(p_tela);i++){
-		printf("%c ",p_tela[i]);
-	}
-	//recebe a letra
-	printf("\nLetra: ");
-	scanf(" %c",&letra); //o espaço antes do % é por conta do replit
-	//Se letra correta atualiza palavra secreta
-	//Verifica se a letra está correta
-	int sera_que_errou=1;//1=sim;0=não
-	for(i=0;i<strlen(p_tela);i++){
-		if(letra==p_secreta[i]){
-			p_tela[i]=letra;
-			sera_que_errou=0;
+	
+	//Um underline por letra da palavra secreta
+	for(i=0;i<strlen(palavra_tela);i++){
+		printf("%c ",palavra_tela[i]);
 		}
-	}
-	//se não incrementa os erros
-	if(sera_que_errou==1)
-		erros++;
-	//verifica se o jogo acabou
-	//verifica se perdeu 
-	if(erros==6){
-		//perdeu
-		printf("\Você perdeu e foi enforcado!!!");
-		printf("\nA palavra era: %s.", p_secreta);
+
+	//Recebe a letra
+	printf("\nLetra: ");
+	scanf(" %c",&letra);
+	system("cls");
+	printf("\nJogador 2, adivinhe a palavra!\n\n");
+	
+	//Verifica se a letra está correta
+	int verifica_erro=1;//1=sim;0=não
+	for(i=0;i<strlen(palavra_tela);i++){
+		if(letra==palavra_secreta[i]){
+			palavra_tela[i]=letra;
+			verifica_erro=0;
+			}
+		}
+	//Se letra não correta, incrementa erro
+	if(verifica_erro==1)
+		erro++;
+	
+	//Verifica perda (se jogo acabou)
+	if(erro==6){
+		//Perdeu
+		system("cls");
+		printf("-----------");
+		printf("\n|         |");
+		printf("\n|         0");
+		printf("\n|        -|-");
+		printf("\n|        / \\");
+		printf("\n|");
+		printf("\n-");	
+		printf("\n\nVocê perdeu e foi enforcado!!!");
+		printf("\nA palavra era: %s.", palavra_secreta);
 		break;
 	}
-	//verificar se ganhou o jogo
-	//verificar se p_secreta é igual a p_tela
-	if(strcmp(p_tela,p_secreta)==0){
-		//ganhou
-		printf("Parabêns, você venceu o jogo e está livre da forca!!!");
+	//Verifica vitória (palavra secreta = palavra da tela
+	system("cls");
+	if(strcmp(palavra_tela,palavra_secreta)==0){
+		//Vitória!
+		printf("\t\t       ___________      \n");
+		printf("\t\t      '._==_==_=_.'     \n");
+		printf("\t\t      .-\\:      /-.    \n");
+		printf("\t\t     | (|:.     |) |    \n");
+		printf("\t\t      '-|:.     |-'     \n");
+		printf("\t\t        \\::.    /      \n");
+		printf("\t\t         '::. .'        \n");
+		printf("\t\t           ) (          \n");
+		printf("\t\t         _.' '._        \n");
+		printf("\t\t        '-------'       \n\n");
+		printf("Parabéns, você venceu o jogo e está livre da forca!!!");
 		break;
 		}
 	}
 }
-
 
 
 
