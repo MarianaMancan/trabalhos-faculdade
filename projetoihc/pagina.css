@@ -5,6 +5,60 @@
     border: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    color: white;
+   
+    
+}
+body{
     background-image: url(background.jpg);
+    color: white;
+}
+#page{
+    background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  padding: 50px;
+  width: 1300px; 
+  height: 700px;
+  margin:0 auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.623)
+
+
+
+}
+#conteudo1{
+    
+    font-size:100px;
+    text-shadow:black;
+
+    
+}
+#conteudo2{
+    padding: 0;
+    font-size:30px
+}
+.cabecalho-menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 24px;
+    gap: 32px;
+
+}
+#botao{
+    cursor: pointer;
+    width:120px;  
+    height:40px;	
+    margin-top: 4rem;
+    border: none;
+    border-radius: 32px;
+    background: #692764;
+    color: white;
+    font-size: 1.1rem;
+    transition: all 0.3s ease-in-out;
+    font-size:16px;
+}
+#conteudo3{
+    font-size:20px;
+    display: flex;
+    align-items: left;
 }
