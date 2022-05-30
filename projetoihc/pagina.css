@@ -11,23 +11,30 @@
 body{
     background-image: url(background.jpg);
     color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
 }
 #page{
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.4);
   border-radius: 10px;
   padding: 50px;
   width: 1300px; 
-  height: 700px;
+  height: 900px;
   margin:0 auto;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.623)
 
-
-
+}
+.header{
+    font-family:20px;
 }
 #conteudo1{
     
     font-size:100px;
     text-shadow:black;
+    text-shadow: black 0.1em 0.1em 0.2em;
 
     
 }
@@ -56,9 +63,27 @@ body{
     font-size: 1.1rem;
     transition: all 0.3s ease-in-out;
     font-size:16px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.623)
 }
-#conteudo3{
-    font-size:20px;
+
+.conteudo{
     display: flex;
+    justify-content: space-between;
+}
+.conteudo-texto{
     align-items: left;
+}
+.conteudo-imagem{
+ right: 370px;
+ padding: 0 auto;
+ margin-top: 0;
+ position:absolute;
+ top:120px;
+ 
+    
+}
+img{
+    width: 600px;
+    height: 700px;
+    
 }
