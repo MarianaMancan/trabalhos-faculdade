@@ -10,7 +10,7 @@
 }
 
 body {
-  background: #9f9cb8;
+  background-image: linear-gradient(to right,rgb(58, 8, 99),pink);
   color: white;
   font-weight: 500;
   display: flex;
@@ -102,6 +102,7 @@ main form input {
   color: white;
   font-size: 1.1rem;
   transition: all 0.3s ease-in-out;
+  padding: 2px;
 }
 main form input[type='submit']:hover {
   background: #5952d4;
